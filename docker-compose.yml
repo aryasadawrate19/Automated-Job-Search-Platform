@@ -1,0 +1,104 @@
+version: '3.8'
+
+services:
+  db:
+    image: ankane/pgvector:v0.5.1
+    container_name: luminous_db
+    environment:
+      POSTGRES_USER: jobplatform
+      POSTGRES_PASSWORD: jobplatform
+      POSTGRES_DB: jobplatform
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U jobplatform"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    container_name: luminous_redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+
+  api:
+    build: 
+      context: .
+      dockerfile: infra/Dockerfile.api
+    container_name: luminous_api
+    command: uvicorn apps.api.main:app --host 0.0.0.0 --port 8000 --reload
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL_SYNC=postgresql://jobplatform:jobplatform@db:5432/jobplatform
+      - DATABASE_URL=postgresql+asyncpg://jobplatform:jobplatform@db:5432/jobplatform
+      - REDIS_URL=redis://redis:6379/0
+      - CELERY_BROKER_URL=redis://redis:6379/1
+      - CELERY_RESULT_BACKEND=redis://redis:6379/2
+      - CORS_ORIGINS=http://localhost:3000
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_started
+
+  celery_ingestion:
+    build: 
+      context: .
+      dockerfile: infra/Dockerfile.api
+    container_name: luminous_ingestion_worker
+    command: celery -A workers.ingestion.tasks.celery_app worker --loglevel=info -B
+    volumes:
+      - .:/app
+    environment:
+      - DATABASE_URL=postgresql+asyncpg://jobplatform:jobplatform@db:5432/jobplatform
+      - REDIS_URL=redis://redis:6379/0
+      - CELERY_BROKER_URL=redis://redis:6379/1
+      - CELERY_RESULT_BACKEND=redis://redis:6379/2
+    depends_on:
+      - db
+      - redis
+
+  celery_matching:
+    build: 
+      context: .
+      dockerfile: infra/Dockerfile.api
+    container_name: luminous_matching_worker
+    command: celery -A workers.matching.tasks.celery_app worker --loglevel=info
+    volumes:
+      - .:/app
+    environment:
+      - DATABASE_URL=postgresql+asyncpg://jobplatform:jobplatform@db:5432/jobplatform
+      - REDIS_URL=redis://redis:6379/0
+      - CELERY_BROKER_URL=redis://redis:6379/1
+      - CELERY_RESULT_BACKEND=redis://redis:6379/2
+    depends_on:
+      - db
+      - redis
+
+  frontend:
+    build:
+      context: ./apps/frontend
+      dockerfile: ../../infra/Dockerfile.frontend
+    container_name: luminous_frontend
+    command: npm run dev
+    volumes:
+      - ./apps/frontend:/app
+      - /app/node_modules
+    ports:
+      - "3000:3000"
+    environment:
+      - NEXT_PUBLIC_API_URL=http://localhost:8000
+    depends_on:
+      - api
+
+volumes:
+  postgres_data:
+  redis_data:

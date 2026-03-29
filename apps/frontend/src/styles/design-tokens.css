@@ -1,0 +1,185 @@
+/*
+ * Design Tokens — Exported from Stitch MCP "Luminous Intelligence" Design System
+ * Single source of truth for all UI styling across the platform.
+ * DO NOT hardcode colors, fonts, or spacing — always reference these tokens.
+ */
+
+:root {
+  /* ===== COLOR MODE ===== */
+  --color-mode: dark;
+
+  /* ===== PRIMARY PALETTE ===== */
+  --color-primary: #81ecff;
+  --color-primary-container: #00e3fd;
+  --color-primary-dim: #00d4ec;
+  --color-primary-fixed: #00e3fd;
+  --color-primary-fixed-dim: #00d4ec;
+  --color-on-primary: #005762;
+  --color-on-primary-container: #004d57;
+  --color-on-primary-fixed: #003840;
+  --color-on-primary-fixed-variant: #005762;
+  --color-inverse-primary: #006976;
+
+  /* ===== SECONDARY PALETTE (Purple/Violet) ===== */
+  --color-secondary: #ac89ff;
+  --color-secondary-container: #7000ff;
+  --color-secondary-dim: #874cff;
+  --color-secondary-fixed: #dac9ff;
+  --color-secondary-fixed-dim: #ceb9ff;
+  --color-on-secondary: #290067;
+  --color-on-secondary-container: #f8f1ff;
+  --color-on-secondary-fixed: #41009a;
+  --color-on-secondary-fixed-variant: #6300e2;
+
+  /* ===== TERTIARY PALETTE (Green/Emerald) ===== */
+  --color-tertiary: #aeffd4;
+  --color-tertiary-container: #00feb1;
+  --color-tertiary-dim: #00eea6;
+  --color-tertiary-fixed: #00feb1;
+  --color-tertiary-fixed-dim: #00eea6;
+  --color-on-tertiary: #006544;
+  --color-on-tertiary-container: #005c3e;
+  --color-on-tertiary-fixed: #00472f;
+  --color-on-tertiary-fixed-variant: #006745;
+
+  /* ===== ERROR PALETTE ===== */
+  --color-error: #ff716c;
+  --color-error-container: #9f0519;
+  --color-error-dim: #d7383b;
+  --color-on-error: #490006;
+  --color-on-error-container: #ffa8a3;
+
+  /* ===== SURFACE & BACKGROUND ===== */
+  --color-background: #0a0f13;
+  --color-on-background: #f3f7fd;
+  --color-surface: #0a0f13;
+  --color-surface-bright: #252d33;
+  --color-surface-dim: #0a0f13;
+  --color-surface-container: #141a1f;
+  --color-surface-container-high: #1a2026;
+  --color-surface-container-highest: #1f272c;
+  --color-surface-container-low: #0e1418;
+  --color-surface-container-lowest: #000000;
+  --color-surface-tint: #81ecff;
+  --color-surface-variant: #1f272c;
+  --color-on-surface: #f3f7fd;
+  --color-on-surface-variant: #a7abb1;
+  --color-inverse-surface: #f6faff;
+  --color-inverse-on-surface: #51565a;
+
+  /* ===== OUTLINE ===== */
+  --color-outline: #71767b;
+  --color-outline-variant: #43484d;
+
+  /* ===== SEMANTIC COLORS ===== */
+  --color-success: #aeffd4;
+  --color-success-dim: #00eea6;
+  --color-success-container: #00feb1;
+  --color-warning: #f59e0b;
+  --color-warning-container: #78350f;
+  --color-skill-matched: #aeffd4;
+  --color-skill-missing: #ff716c;
+  --color-skill-neutral: #43484d;
+  --color-score-high: #aeffd4;
+  --color-score-medium: #81ecff;
+  --color-score-low: #ff716c;
+
+  /* ===== TYPOGRAPHY ===== */
+  --font-headline: 'Space Grotesk', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-label: 'Manrope', sans-serif;
+
+  /* Display */
+  --font-size-display-lg: 3.5rem;
+  --font-size-display-md: 2.75rem;
+  --font-size-display-sm: 2.25rem;
+  --line-height-display: 1.1;
+  --letter-spacing-display: -0.02em;
+
+  /* Headline */
+  --font-size-headline-lg: 2rem;
+  --font-size-headline-md: 1.75rem;
+  --font-size-headline-sm: 1.5rem;
+  --line-height-headline: 1.25;
+
+  /* Title */
+  --font-size-title-lg: 1.375rem;
+  --font-size-title-md: 1.125rem;
+  --font-size-title-sm: 0.875rem;
+  --line-height-title: 1.35;
+
+  /* Body */
+  --font-size-body-lg: 1rem;
+  --font-size-body-md: 0.875rem;
+  --font-size-body-sm: 0.75rem;
+  --line-height-body: 1.6;
+
+  /* Label */
+  --font-size-label-lg: 0.875rem;
+  --font-size-label-md: 0.75rem;
+  --font-size-label-sm: 0.6875rem;
+  --line-height-label: 1.4;
+  --letter-spacing-label: 0.02em;
+
+  /* ===== SPACING SCALE (8px base, factor 2) ===== */
+  --spacing-0: 0;
+  --spacing-1: 0.125rem;   /* 2px */
+  --spacing-2: 0.25rem;    /* 4px */
+  --spacing-3: 0.375rem;   /* 6px */
+  --spacing-4: 0.5rem;     /* 8px */
+  --spacing-5: 0.625rem;   /* 10px */
+  --spacing-6: 0.75rem;    /* 12px */
+  --spacing-8: 1rem;       /* 16px */
+  --spacing-10: 1.25rem;   /* 20px */
+  --spacing-12: 1.5rem;    /* 24px */
+  --spacing-16: 2rem;      /* 32px */
+  --spacing-20: 2.5rem;    /* 40px */
+  --spacing-24: 3rem;      /* 48px */
+  --spacing-32: 4rem;      /* 64px */
+  --spacing-40: 5rem;      /* 80px */
+
+  /* ===== SHAPE / ROUNDNESS ===== */
+  --radius-none: 0;
+  --radius-xs: 0.125rem;   /* 2px */
+  --radius-sm: 0.25rem;    /* 4px */
+  --radius-md: 0.375rem;   /* 6px */
+  --radius-lg: 0.75rem;    /* 12px */
+  --radius-xl: 1rem;       /* 16px */
+  --radius-2xl: 1.5rem;    /* 24px */
+  --radius-full: 9999px;
+
+  /* ===== ELEVATION / SHADOWS ===== */
+  --shadow-sm: 0 1px 3px rgba(0, 227, 253, 0.04);
+  --shadow-md: 0 4px 12px rgba(0, 227, 253, 0.06);
+  --shadow-lg: 0 12px 32px rgba(0, 227, 253, 0.08);
+  --shadow-xl: 0 20px 40px rgba(0, 227, 253, 0.08);
+  --shadow-glow-primary: 0 0 20px rgba(129, 236, 255, 0.15);
+  --shadow-glow-success: 0 0 20px rgba(174, 255, 212, 0.15);
+  --shadow-glow-error: 0 0 20px rgba(255, 113, 108, 0.15);
+
+  /* ===== GLASS MORPHISM ===== */
+  --glass-bg: rgba(31, 39, 44, 0.3);
+  --glass-border: rgba(67, 72, 77, 0.2);
+  --glass-blur: 24px;
+  --glass-bg-heavy: rgba(31, 39, 44, 0.6);
+
+  /* ===== TRANSITIONS ===== */
+  --transition-fast: 150ms ease;
+  --transition-base: 250ms ease;
+  --transition-slow: 400ms ease;
+  --transition-spring: 500ms cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* ===== Z-INDEX SCALE ===== */
+  --z-base: 0;
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-overlay: 300;
+  --z-modal: 400;
+  --z-toast: 500;
+
+  /* ===== GRADIENTS ===== */
+  --gradient-primary: linear-gradient(135deg, #81ecff, #00e3fd);
+  --gradient-secondary: linear-gradient(135deg, #ac89ff, #7000ff);
+  --gradient-tertiary: linear-gradient(135deg, #aeffd4, #00feb1);
+  --gradient-surface: linear-gradient(180deg, #141a1f, #0a0f13);
+}
