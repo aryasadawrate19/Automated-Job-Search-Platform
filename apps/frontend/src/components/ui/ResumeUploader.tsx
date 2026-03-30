@@ -29,7 +29,9 @@ export const ResumeUploader: React.FC<{ onUploadSuccess: (data: any) => void }> 
     setError(null);
 
     try {
-      const result = await api.uploadResume(file);
+      const formData = new FormData();
+      formData.append('file', file);
+      const result = await api.uploadResume(formData);
       onUploadSuccess(result);
     } catch (err: any) {
       setError(err.message || "Failed to upload and parse resume.");

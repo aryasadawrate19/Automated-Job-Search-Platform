@@ -23,17 +23,14 @@ def upgrade() -> None:
     experience_level_enum = sa.Enum(
         "junior", "mid", "senior", "lead", name="experience_level_enum"
     )
-    experience_level_enum.create(op.get_bind(), checkfirst=True)
 
     # Create remote_preference enum
     remote_preference_enum = sa.Enum(
         "only", "preferred", "open", name="remote_preference_enum"
     )
-    remote_preference_enum.create(op.get_bind(), checkfirst=True)
 
     # Create ai_provider enum
     ai_provider_enum = sa.Enum("anthropic", "gemini", "openai", name="ai_provider_enum")
-    ai_provider_enum.create(op.get_bind(), checkfirst=True)
 
     # ── Jobs table ─────────────────────────────────────────────────────
     op.create_table(

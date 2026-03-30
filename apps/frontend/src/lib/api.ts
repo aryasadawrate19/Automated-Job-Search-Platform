@@ -15,7 +15,7 @@ class ApiError extends Error {
   }
 }
 
-async function apiFetch<T>(endpoint: string, options: FetchOptions = {}): Promise<T> {
+async function apiFetch<T = any>(endpoint: string, options: FetchOptions = {}): Promise<T> {
   const { params, ...fetchOpts } = options;
 
   let url = `${API_BASE}${endpoint}`;

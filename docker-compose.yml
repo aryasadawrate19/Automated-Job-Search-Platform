@@ -85,13 +85,9 @@ services:
 
   frontend:
     build:
-      context: ./apps/frontend
-      dockerfile: ../../infra/Dockerfile.frontend
+      context: .
+      dockerfile: infra/Dockerfile.frontend
     container_name: luminous_frontend
-    command: npm run dev
-    volumes:
-      - ./apps/frontend:/app
-      - /app/node_modules
     ports:
       - "3000:3000"
     environment:

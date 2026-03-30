@@ -17,7 +17,7 @@ export default function DashboardPage() {
   useEffect(() => {
     const fetchMatches = async () => {
       try {
-        const data = await api.getMatches(USER_ID);
+        const data = await api.getMatches(USER_ID) as MatchListResponse;
         setMatches(data.items);
       } catch (err: any) {
         setError(err.message || "Failed to load matches");

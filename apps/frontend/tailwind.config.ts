@@ -1,7 +1,7 @@
 import type { Config } from 'tailwindcss';
 import { tailwindExtend } from './src/styles/theme';
 
-const config: Config = {
+const config: any = {
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
@@ -10,7 +10,7 @@ const config: Config = {
   darkMode: 'class',
   theme: {
     extend: {
-      ...tailwindExtend,
+      ...(tailwindExtend as any),
       backgroundImage: {
         'gradient-primary': 'linear-gradient(135deg, #81ecff, #00e3fd)',
         'gradient-secondary': 'linear-gradient(135deg, #ac89ff, #7000ff)',

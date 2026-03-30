@@ -22,10 +22,7 @@ export const AIProviderSettings: React.FC = () => {
     setLoading(true);
     setMessage(null);
     try {
-      const payload: ApiKeyRequest = { api_key: keys[keyName] };
-      if (keyName === 'anthropic') await api.saveAnthropicKey(payload);
-      if (keyName === 'gemini') await api.saveGeminiKey(payload);
-      if (keyName === 'openai') await api.saveOpenaiKey(payload);
+      await api.saveApiKey(keyName, keys[keyName]);
       
       setMessage({ type: 'success', text: `${providerName} key saved and encrypted successfully.` });
     } catch (err: any) {
@@ -39,8 +36,7 @@ export const AIProviderSettings: React.FC = () => {
     setLoading(true);
     setMessage(null);
     try {
-      const payload: AiProviderRequest = { ai_provider: newProvider };
-      await api.setAiProvider(payload);
+      await api.setAiProvider(newProvider);
       setProvider(newProvider);
       setMessage({ type: 'success', text: `Default AI provider set to ${newProvider}.` });
     } catch (err: any) {

@@ -48,15 +48,9 @@ export default function JobDetailPage() {
     setAssistError(null);
 
     try {
-      const stream = await api.generateCoverLetter({ user_id: USER_ID, job_id: match.job_id });
-      const reader = stream.getReader();
-      const decoder = new TextDecoder();
+      const stream = api.generateCoverLetter(match.job_id, USER_ID);
 
-      while (true) {
-        const { value, done } = await reader.read();
-        if (done) break;
-        
-        const chunk = decoder.decode(value, { stream: true });
+      for await (const chunk of stream) {
         setCoverLetter(prev => prev + chunk);
         
         // Auto-scroll inside pre
@@ -81,7 +75,7 @@ export default function JobDetailPage() {
     setAssistError(null);
 
     try {
-      const data = await api.generateResumeTips({ user_id: USER_ID, job_id: match.job_id });
+      const data = await api.getResumeTips(match.job_id, USER_ID);
       setTips(data.tips);
     } catch (err: any) {
       if (err.message && err.message.includes('api_key_required')) {
